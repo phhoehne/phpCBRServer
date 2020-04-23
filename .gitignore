@@ -1,0 +1,7 @@
+books/*
+nbproject/*
+vendor/*
+thumbs/*
+tmp/*
+.htaccess
+.DS_Store

@@ -1,0 +1,14 @@
+{
+    "name": "vendor/php-c-b-r",
+    "description": "Description of project phpCBR.",
+    "authors": [
+        {
+            "name": "Philipp Höhne",
+            "email": "philipp@hoehne.ch"
+        }
+    ],
+    "require": {
+        "sofadesign/limonade": "dev-master",
+        "wapmorgan/unified-archive": "^0.2.0"
+    }
+}
