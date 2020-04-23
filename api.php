@@ -32,15 +32,8 @@ function getBookList() {
     
     foreach ($tmp as $book) {
                 array_push($books, basename($book));
-    }    
+    }      
 
-    
-//    foreach ($GLOBALS['allowedBookTypes'] as $bookType) {
-//        $tmp = glob($GLOBALS[booksDir] . '*.' . $bookType);
-//        foreach ($tmp as $book) {
-//            array_push($books, basename($book));
-//        }
-//    }
     return json($books);
 }
 

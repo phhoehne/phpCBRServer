@@ -19,17 +19,11 @@ module.controller("pageController", function ($scope, $http, $localStorage, $win
     $scope.showLoader = false;
     $scope.pageHeight = $window.innerHeight + "px";
     var lastBookListPosition = 0;
-    var numOfPagesToPrefetch = 5;
-
 
     var preloadNextPage = function () {
-        for (var i = 0; i < numOfPagesToPrefetch; i++) {
-            if (($scope.currentPage + i + 1) < $scope.numberOfPages) {
-                $scope.preloadedImageURL = pageImageUrlBase + $scope.currentBook + "/" + ($scope.currentPage + i + 1);
-            }
+        if (($scope.currentPage + 1) < $scope.numberOfPages) {
+            $scope.preloadedImageURL = pageImageUrlBase + $scope.currentBook + "/" + ($scope.currentPage + 1);
         }
-
-
     };
 
     var getLastPageRead = function () {

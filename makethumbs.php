@@ -10,9 +10,11 @@ $thumbsDir = 'thumbs/';
 $tempDir = 'tmp/';
 
 $allowedBookTypes = ['cbr', 'cbz', 'rar', 'zip'];
-$allowedImageTypes = ['jpg', 'jpeg', 'png', 'gif'];
+$allowedImageTypes =  ['jpg', 'jpeg', 'png', 'gif'];
 
 function getBookList() {
+
+    /*
     $books = [];
 
     foreach ($GLOBALS['allowedBookTypes'] as $bookType) {
@@ -21,8 +23,34 @@ function getBookList() {
             array_push($books, basename($book));
         }
     }
+    */
+
+    $books = [];
+    
+    $allowedBookTypesPatterns = globCaseInsensitivePattern($GLOBALS['allowedBookTypes']);
+    
+    $tmp = (array) glob($GLOBALS['booksDir'] . $allowedBookTypesPatterns, GLOB_BRACE);
+    
+    foreach ($tmp as $book) {
+                array_push($books, basename($book));
+    } 
+    
     return $books;
 }
+
+/*
+    $books = [];
+    
+    $allowedBookTypesPatterns = globCaseInsensitivePattern($GLOBALS['allowedBookTypes']);
+    
+    $tmp = (array) glob($GLOBALS['booksDir'] . $allowedBookTypesPatterns, GLOB_BRACE);
+    
+    foreach ($tmp as $book) {
+                array_push($books, basename($book));
+    }      
+
+    return json($books);
+*/
 
 function getCoverPage($title) {
 
