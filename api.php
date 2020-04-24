@@ -34,6 +34,8 @@ function getBookList() {
                 array_push($books, basename($book));
     }      
 
+    sort($books);
+
     return json($books);
 }
 
