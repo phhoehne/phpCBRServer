@@ -56,9 +56,7 @@ class Rar extends BasicFormat
                 $information->files[] = $entry->getName();
                 $information->compressedFilesSize += $entry->getPackedSize();
                 $information->uncompressedFilesSize += $entry->getUnpackedSize();                
-            } else {
-                error_log($entry->getName() . " is a directory, skipping!");
-            }
+            } 
         }
         return $information;
     }
