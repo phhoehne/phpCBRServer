@@ -1,78 +1,90 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>phpCBR</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.21/angular-material.min.css" integrity="sha256-qpcuZVV/FpX6TtlD2tp9rXpgrDmTPIm013++2dO2w60=" crossorigin="anonymous" />
-        <link href="styles.css" rel="stylesheet" type="text/css"/>
-        <link href="icons.css" rel="stylesheet" type="text/css"/>
-    </head>
-    <body style="overflow-y: auto !important;">
-        <div ng-app="phpCBR">
-            <div ng-controller="pageController" ng-cloak>
-                <div ng-hide="showDetail">
-                    <div ng-repeat="book in books" ng-click="getBook(book)">
-                        <img ng-src="{{thumbPath}}\{{book}}.jpg" on-image-load-error="images/placeholderCover.png" class="coverThumbnail">
-                        <p>{{book}}
-                    </div>
-                </div>
 
-                <!-- div ng-hide="!showDetail"  md-swipe-up="goHome()" md-swipe-down="showControls = true" adaptive-background ab-image-class="fitted-image" -->
-                <div ng-hide="!showDetail"  md-swipe-up="goHome()" md-swipe-down="showControls = true">
-                    <div class="loading" ng-show="showLoader">Loading</div>
-                    <div class="floatingControls" style="top: 1vh !important;" ng-show-timed trigger="showControls" duration="{{showControlsDuration}}">
-                        <div class="controlButtons">
-                            <div style="display: inline-block;">
-                                <input type="number" min="1" max="{{numberOfPages}}" maxlength="5" size="5" string-to-number ng-model="jumpTarget" ng-trim="true" class="pages pageInput" ng-enter="goToPage(jumpTarget)"/>
-                                <span class="pages numPages">/ {{numberOfPages}}</span>
-                                <span class="icon-goto controlButton" ng-click="goToPage(jumpTarget)"></span>
-                            </div>
-                        </div>
-                    </div>                    
-                    <img
-                        imageonload toggle="showLoader" 
-                        on-image-load-error="images/placeholderPage.png"
-                        class="fitted-image fade-in" 
-                        ng-src="{{pageImageUrl}}" 
-                        md-swipe-left="nextPage()"
-                        md-swipe-right="previousPage()"  
-                        ng-click="nextPage()" 
-                        style="height: {{pageHeight}} !important;"
-                        />
-                    <div class="floatingControls" ng-show-timed trigger="showControls" duration="{{showControlsDuration}}">
-                        <div class="controlButtons">
-                            <div>
-                                <span class="icon-first controlButton" ng-click="firstPage()" ng-class="{disabled: currentPage === 1}"></span>
-                                <span class="icon-previous controlButton" ng-click="previousPage()" ng-class="{disabled: currentPage === 1}"></span>
-                                <span class="icon-home controlButton" ng-click="goHome();"></span>
-                                <span class="icon-next controlButton" ng-click="nextPage()" ng-class="{disabled: currentPage === numberOfPages}"></span>
-                                <span class="icon-last controlButton" ng-click="lastPage()" ng-class="{disabled: currentPage === numberOfPages}"></span>
-                            </div>
-                            <!-- div class="pages">
-                                <span>{{currentPage}} / {{numberOfPages}}</span>
-                            </div -->
+<head>
+    <title>phpCBR</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.21/angular-material.min.css"
+        integrity="sha256-qpcuZVV/FpX6TtlD2tp9rXpgrDmTPIm013++2dO2w60=" crossorigin="anonymous" />
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+    <link href="icons.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body style="overflow-y: auto !important;">
+    <div ng-app="phpCBR">
+        <div ng-controller="pageController" ng-cloak>
+            <div ng-hide="showDetail" style="margin-top: 10px;">
+                <div layout="row" layout-wrap="" layout-align="center start">
+                    <div ng-repeat="book in books" ng-click="getBook(book)" layout="col" layout-wrap="">
+                        <div flex="100" flex-sm="50" flex-md="25" flex-gt-md="12" style="display: table; margin: 5px;">
+                            <img ng-src="{{thumbPath}}\{{book}}.jpg" on-image-load-error="images/placeholderCover.png" class="coverThumbnail">
                         </div>
                     </div>
-                    <div><img ng-src="{{preloadedImageURL}}" class="preloaded-image"/></div>
                 </div>
             </div>
+
+            <!-- div ng-hide="!showDetail"  md-swipe-up="goHome()" md-swipe-down="showControls = true" adaptive-background ab-image-class="fitted-image" -->
+            <div ng-hide="!showDetail" md-swipe-up="goHome()" md-swipe-down="showControls = true">
+                <div class="loading" ng-show="showLoader">Loading</div>
+                <div class="floatingControls" style="top: 1vh !important;" ng-show-timed trigger="showControls"
+                    duration="{{showControlsDuration}}">
+                    <div class="controlButtons">
+                        <div style="display: inline-block;">
+                            <input type="number" min="1" max="{{numberOfPages}}" maxlength="5" size="5" string-to-number
+                                ng-model="jumpTarget" ng-trim="true" class="pages pageInput"
+                                ng-enter="goToPage(jumpTarget)" />
+                            <span class="pages numPages">/ {{numberOfPages}}</span>
+                            <span class="icon-goto controlButton" ng-click="goToPage(jumpTarget)"></span>
+                        </div>
+                    </div>
+                </div>
+                <img imageonload toggle="showLoader" on-image-load-error="images/placeholderPage.png"
+                    class="fitted-image fade-in" ng-src="{{pageImageUrl}}" md-swipe-left="nextPage()"
+                    md-swipe-right="previousPage()" ng-click="nextPage()" style="height: {{pageHeight}} !important;" />
+                <div class="floatingControls" ng-show-timed trigger="showControls" duration="{{showControlsDuration}}">
+                    <div class="controlButtons">
+                        <div>
+                            <span class="icon-first controlButton" ng-click="firstPage()"
+                                ng-class="{disabled: currentPage === 1}"></span>
+                            <span class="icon-previous controlButton" ng-click="previousPage()"
+                                ng-class="{disabled: currentPage === 1}"></span>
+                            <span class="icon-home controlButton" ng-click="goHome();"></span>
+                            <span class="icon-next controlButton" ng-click="nextPage()"
+                                ng-class="{disabled: currentPage === numberOfPages}"></span>
+                            <span class="icon-last controlButton" ng-click="lastPage()"
+                                ng-class="{disabled: currentPage === numberOfPages}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div><img ng-src="{{preloadedImageURL}}" class="preloaded-image" /></div>
+            </div>
         </div>
+    </div>
 
 
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js" integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-animate/1.7.9/angular-animate.min.js" integrity="sha256-4Am33FY45kRUTsiTIMaIc7t10JBmM6ybI/SYqNcMxsQ=" crossorigin="anonymous"></script>  
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-aria/1.7.9/angular-aria.min.js" integrity="sha256-J9qjrqGdu02DiEwyoluAIeP548sJVj3Xq/n/g3yxbgY=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.7.9/angular-messages.min.js" integrity="sha256-AdbPcAJ7xwaTeBZuq+dDME+IsMMO+ZGpvDnJxpD0GO8=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-touch/1.7.9/angular-touch.min.js" integrity="sha256-tqkwQDD7/6S5kru/7UjpaiFx9xbdotmPhVJSNhwsdUM=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.21/angular-material.min.js" integrity="sha256-6cChCyngv2PiU7fD8fePLTjZzHDE4zMQyv9iZLvHlBk=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js" integrity="sha256-0YzDSJS0qH+wpvug+Im1cMB9CX919NMtHj0d2VVHPp4=" crossorigin="anonymous"></script>
-        <script src="angular-adaptive-backgrounds.min.js" type="text/javascript"></script>
-        <script src="main.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js"
+        integrity="sha256-b5NvmvUcyr0wpBOLnNbaWH5zKQAivhj8yMYhfXEumQA=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-animate/1.7.9/angular-animate.min.js"
+        integrity="sha256-4Am33FY45kRUTsiTIMaIc7t10JBmM6ybI/SYqNcMxsQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-aria/1.7.9/angular-aria.min.js"
+        integrity="sha256-J9qjrqGdu02DiEwyoluAIeP548sJVj3Xq/n/g3yxbgY=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.7.9/angular-messages.min.js"
+        integrity="sha256-AdbPcAJ7xwaTeBZuq+dDME+IsMMO+ZGpvDnJxpD0GO8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-touch/1.7.9/angular-touch.min.js"
+        integrity="sha256-tqkwQDD7/6S5kru/7UjpaiFx9xbdotmPhVJSNhwsdUM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.21/angular-material.min.js"
+        integrity="sha256-6cChCyngv2PiU7fD8fePLTjZzHDE4zMQyv9iZLvHlBk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"
+        integrity="sha256-0YzDSJS0qH+wpvug+Im1cMB9CX919NMtHj0d2VVHPp4=" crossorigin="anonymous"></script>
+    <script src="angular-adaptive-backgrounds.min.js" type="text/javascript"></script>
+    <script src="main.js" type="text/javascript"></script>
 
-        <!-- script>
+    <!-- script>
                         window.addEventListener("load", function() {
                         setTimeout(function() {
                         window.scrollTo(0, 1000);
@@ -81,5 +93,6 @@
                         });
         </script -->
 
-    </body>
+</body>
+
 </html>

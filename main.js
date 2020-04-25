@@ -69,9 +69,6 @@ module.controller("pageController", function ($scope, $http, $localStorage, $win
                 });
     };
 
-
-
-
     $scope.nextPage = function () {
         if ($scope.currentPage < $scope.numberOfPages) {
             $scope.goToPage(++$scope.currentPage);
