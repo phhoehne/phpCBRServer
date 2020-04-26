@@ -6,6 +6,7 @@ module.controller("pageController", function ($scope, $http, $localStorage, $win
     var pageImageUrlBase = $scope.pathToCBRServer + "/api.php/page/";
     var placeholderCoverUrl = "images/placeholderCover.png";
     var placeholderPageUrl = "images/pixel.png";
+    var lastBookListPosition = 0;
     $scope.showDetail = false;
     $scope.books = [];
     $scope.currentBook = "";
@@ -18,7 +19,15 @@ module.controller("pageController", function ($scope, $http, $localStorage, $win
     $scope.showControlsDuration = "10";
     $scope.showLoader = false;
     $scope.pageHeight = $window.innerHeight + "px";
-    var lastBookListPosition = 0;
+    $scope.search = '';
+    $scope.searchBarVisible = false;
+
+    // to focus on input element after it appears
+    $scope.$watch(function () {
+        return document.querySelector('#search-bar:not(.ng-hide)');
+    }, function () {
+        document.getElementById('search-input').focus();
+    });
 
     var preloadNextPage = function () {
         if (($scope.currentPage + 1) < $scope.numberOfPages) {
@@ -45,9 +54,9 @@ module.controller("pageController", function ($scope, $http, $localStorage, $win
 
     $scope.getBookList = function () {
         $http.get("api.php/books")
-                .then(function (response) {
-                    $scope.books = response.data;
-                });
+            .then(function (response) {
+                $scope.books = response.data;
+            });
     };
 
     $scope.getBook = function (title) {
@@ -58,15 +67,15 @@ module.controller("pageController", function ($scope, $http, $localStorage, $win
         $scope.currentPage = 1;
         var url = $scope.pathToCBRServer + "/api.php/pages/" + title;
         $http.get(url)
-                .then(function (response) {
-                    $scope.currentPage = getLastPageRead();
-                    $scope.jumpTarget = $scope.currentPage;
-                    $scope.numberOfPages = response.data.numberOfPages;
-                    setCurrentPageURL();
-                    lastBookListPosition = $window.pageYOffset;
-                    $scope.showDetail = true;
+            .then(function (response) {
+                $scope.currentPage = getLastPageRead();
+                $scope.jumpTarget = $scope.currentPage;
+                $scope.numberOfPages = response.data.numberOfPages;
+                setCurrentPageURL();
+                lastBookListPosition = $window.pageYOffset;
+                $scope.showDetail = true;
 
-                });
+            });
     };
 
     $scope.nextPage = function () {
@@ -148,6 +157,13 @@ module.controller("pageController", function ($scope, $http, $localStorage, $win
     $window.addEventListener('orientationchange', function () {
         $scope.pageHeight = $window.innerHeight + "px";
         $scope.$apply();
+    });
+
+    // to focus on saerch input element after it appears
+    $scope.$watch(function () {
+        return document.querySelector('#search-bar:not(.ng-hide)');
+    }, function () {
+        document.getElementById('search-input').focus();
     });
 
     $scope.getBookList();
