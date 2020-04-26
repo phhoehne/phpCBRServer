@@ -134,7 +134,7 @@ module.controller("pageController", function ($scope, $http, $localStorage, $win
                 $scope.showControls = true;
                 break;
             case 'Home':
-                $scope.showControls = true;
+                $scope.showDetail = false;
                 break;
         }
         $scope.$apply();
