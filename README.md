@@ -23,6 +23,7 @@ Reading comic books from one place (server) instead of having them copied to a d
 * clone or download repository
 * move the folder phpCBRServer to your webserver's home directory (e.g. /var/www/html)
 * in the phpCBRServer directory create the folders "thumbs" and "books"
+* change ownership / give read & write permissions to the directories just created (e.g.: sudo chown www-data:www-data ./thumbs)
 * run "composer install" to install PHP dependencies
 * rename or delete the file vendor/wapmorgan/unified-archive/src/Formats/Rar.php
 * copy fix/Rar.php to vendor/wapmorgan/unified-archive/src/Formats/Rar.php
@@ -100,3 +101,5 @@ Response: file with MIME type "image/jpeg"
 * Remember last book read
 * Add fullscreen mode for PC / Notebooks (currently no way for mobile devices)
 
+## Contribute
+As I'm a lousy, hobbist, "when-kids-are in bed" developer: any contribution, bug report etc. is appreciated
