@@ -8,6 +8,7 @@ Reading comic books from one place (server) instead of having them copied to a d
 
 ## Features
 * supported formats: CBR, CBZ, ZIP, RAR
+* supported images types in archive: JPG/JPEG, PNG, GIF
 * slim PHP backend
 * responsive Angularjs frontend, made with mobile devices in mind
 
@@ -85,7 +86,7 @@ api.php/page/<filename of the book>/<page number>
 
 e.g.: api.php/page/A%20Year%20of%20Marvels%20-%20August%20Infinite%20Comic%20001.cbr/2
 ```
-Response: file with MIME type "image/jpeg"
+Response: file with MIME type "image/jpeg", "image/png" or "image/gif"
 
 ## To Do
 ### Backend
