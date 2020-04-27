@@ -102,4 +102,4 @@ Response: file with MIME type "image/jpeg"
 * Add fullscreen mode for PC / Notebooks (currently no way for mobile devices)
 
 ## Contribute
-As I'm a lousy, hobbyist, "when-kids-are in bed" developer: any contribution, bug report etc. is appreciated
+As I'm a lousy, hobbyist, "when-kids-are-in-bed" developer: any contribution, bug report etc. is appreciated
