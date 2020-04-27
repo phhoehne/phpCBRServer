@@ -62,13 +62,11 @@
                 <div class="floatingControls" style="top: 0px !important;" ng-show-timed trigger="showControls"
                     duration="{{showControlsDuration}}">
                     <div class="controlButtons">
-                        <div>
                             <input type="number" min="1" max="{{numberOfPages}}" maxlength="5" size="5" string-to-number
                                 ng-model="jumpTarget" ng-trim="true" class="pages pageInput"
                                 ng-enter="goToPage(jumpTarget)" />
                             <span class="pages numPages">/ {{numberOfPages}}</span>
                             <i class="icon-goto controlButton" ng-click="goToPage(jumpTarget)"></i>
-                        </div>
                     </div>
                 </div>
                 <img imageonload toggle="showLoader" on-image-load-error="images/placeholderPage.png"
