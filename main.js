@@ -159,7 +159,7 @@ module.controller("pageController", function ($scope, $http, $localStorage, $win
         $scope.$apply();
     });
 
-    // to focus on saerch input element after it appears
+    // to focus on search input element after it appears
     $scope.$watch(function () {
         return document.querySelector('#search-bar:not(.ng-hide)');
     }, function () {
