@@ -93,7 +93,6 @@ Response: file with MIME type "image/jpeg", "image/png" or "image/gif"
 * Sanitize inputs
 * Proper error handling
 * Handle books in subdirectories
-* Support for .pdf files
 
 ### Frontend
 * Router for clean page structure
