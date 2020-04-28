@@ -43,10 +43,12 @@ Reading comic books from one place (server) instead of having them copied to a d
 | Previous page     | cursor-left                 | swipe-left         |
 | Show controls     | cursor-down or move mouse   | swipe-down         |
 | Back to book list | cursor-up or home           | swipe-up           |
+|                                                                      |
 
 ## Limitations / Warnings
 * all book files must be directly in the ./books directory, files from sub-directories are not read
-* API inputs are not sanitized
+* book filenames must no contain "&" (ampersand) or "?" (question mark)
+* API: book filename not sanitized
 * extracting & transferring pages may require quite some fast CPU, disk & bandwidth, therefore best used in a LAN and / or for just a few users
 * every single page might be 1+ MBytes, so mind your data package (if not unlimited) on mobile networks
 
