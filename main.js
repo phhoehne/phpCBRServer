@@ -119,7 +119,6 @@ module.controller("pageController", function ($scope, $http, $localStorage, $win
     };
 
     var handleKeyEvents = function (event) {
-        console.log(event.key);
         switch (event.key) {
             case 'ArrowLeft':
                 $scope.previousPage();

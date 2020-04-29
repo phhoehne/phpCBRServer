@@ -82,7 +82,7 @@ function getCoverPage($title) {
 
 
     if (!in_arrayi($ext, $GLOBALS['allowedImageTypes'])) {
-        echo "<p>File type $ext not allowed";
+        echo "<p>File type $ext in file $pages[0] not allowed";
         flush();
         return null;
     }

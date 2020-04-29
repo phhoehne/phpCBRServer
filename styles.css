@@ -1,7 +1,7 @@
 
 body, html {
     margin: 0;
-    background: #101010;
+    background:#101010;
     color: white;
 }
 
@@ -282,3 +282,15 @@ body, html {
 .search-bar * { color: white !important; }
 .search-bar input { border-bottom-color: white; }
 .md-errors-spacer { display:none; }
+
+md-divider {
+    color: rgba(100,100,100,0.5);
+    border-width: 1px;
+    border-style: solid;
+}
+
+md-list-item-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

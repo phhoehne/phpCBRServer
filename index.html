@@ -25,9 +25,16 @@
                     <div id="search-bar" ng-hide="searchBarVisible" class="md-toolbar-tools">
                         <h2>Comic Book Reader</h2>
                         <span flex></span>
-                        <md-button ng-click="searchBarVisible = true">
+                        <md-button class="md-icon-button" ng-hide="listView" ng-click="listView = true">
+                            <md-icon>view_list</md-icon>
+                        </md-button>                 
+                        <md-button class="md-icon-button" ng-hide="!listView" ng-click="listView = false">
+                            <md-icon>view_comfy</md-icon>
+                        </md-button>                                                     
+                        <md-button class="md-icon-button" ng-click="searchBarVisible = true">
                             <md-icon>search</md-icon>
                         </md-button>
+                        
                     </div>
                     <div ng-show="searchBarVisible" class="md-toolbar-tools search-bar">
                         <md-button class="md-icon-button">
@@ -43,7 +50,7 @@
                 </md-toolbar>
 
 
-                <div layout="row" layout-wrap="" layout-align="center start" style="margin-top: 10px;">
+                <div layout="row" layout-wrap="" layout-align="center start" style="margin-top: 10px;" ng-hide="listView">
                     <div ng-repeat="book in books | filter: search" ng-click="getBook(book)" layout="col"
                         layout-wrap="">
                         <div flex="100" flex-sm="50" flex-md="25" flex-gt-md="12" style="display: table; margin: 5px;"
@@ -53,6 +60,15 @@
                         </div>
                     </div>
                 </div>
+
+                <md-list ng-show="listView">
+                    <md-list-item ng-repeat="book in books | filter: search" ng-click="getBook(book)">
+                        <md-list-item-text>
+                            {{book}}
+                        </md-list-item-text>
+                        <md-divider></md-divider>
+                    </md-list-item>
+                </md-list>
 
             </div>
 
