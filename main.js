@@ -1,7 +1,7 @@
 var module = angular.module("phpCBR", ['ngAnimate', 'ngMaterial', 'ngStorage', 'mb-adaptive-backgrounds']);
 
 module.controller("pageController", function ($scope, $http, $localStorage, $window) {
-    $scope.pathToCBRServer = "/phpCBR";
+    $scope.pathToCBRServer = "http://localhost/phpCBR";
     $scope.thumbPath = "thumbs";
     var pageImageUrlBase = $scope.pathToCBRServer + "/api.php/page/";
     var placeholderCoverUrl = "images/placeholderCover.png";
@@ -21,13 +21,6 @@ module.controller("pageController", function ($scope, $http, $localStorage, $win
     $scope.pageHeight = $window.innerHeight + "px";
     $scope.search = '';
     $scope.searchBarVisible = false;
-
-    // to focus on input element after it appears
-    $scope.$watch(function () {
-        return document.querySelector('#search-bar:not(.ng-hide)');
-    }, function () {
-        document.getElementById('search-input').focus();
-    });
 
     var preloadNextPage = function () {
         if (($scope.currentPage + 1) < $scope.numberOfPages) {
@@ -226,4 +219,4 @@ module.directive('onImageLoadError', function () {
             })
         }
     }
-})
+});
