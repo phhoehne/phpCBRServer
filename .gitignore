@@ -5,3 +5,4 @@ thumbs/*
 tmp/*
 .htaccess
 .DS_Store
+.vscode/settings.json

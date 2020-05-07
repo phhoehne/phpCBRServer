@@ -1,7 +1,7 @@
 var module = angular.module("phpCBR", ['ngAnimate', 'ngMaterial', 'ngStorage', 'mb-adaptive-backgrounds']);
 
 module.controller("pageController", function ($scope, $http, $localStorage, $window) {
-    $scope.pathToCBRServer = "http://localhost/phpCBR";
+    $scope.pathToCBRServer = "/phpCBR";
     $scope.thumbPath = "thumbs";
     var pageImageUrlBase = $scope.pathToCBRServer + "/api.php/page/";
     var placeholderCoverUrl = "images/placeholderCover.png";
@@ -151,7 +151,7 @@ module.controller("pageController", function ($scope, $http, $localStorage, $win
         $scope.$apply();
     });
 
-    // to focus on search input element after it appears
+    // Focus on search input element after it appears
     $scope.$watch(function () {
         return document.querySelector('#search-bar:not(.ng-hide)');
     }, function () {
