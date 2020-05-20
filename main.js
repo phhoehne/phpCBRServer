@@ -54,21 +54,23 @@ module.controller("pageController", function ($scope, $http, $localStorage, $win
 
     $scope.getBook = function (title) {
         $scope.pageImageUrl = placeholderPageUrl;
-        $scope.preloadedImageURL = "";
         $scope.numberOfPages = 0;
         $scope.currentBook = title;
-        $scope.currentPage = 1;
+        $scope.currentPage = getLastPageRead();
+        $scope.jumpTarget = $scope.currentPage;
         var url = $scope.pathToCBRServer + "/api.php/pages/" + title;
         $http.get(url)
-            .then(function (response) {
-                $scope.currentPage = getLastPageRead();
-                $scope.jumpTarget = $scope.currentPage;
-                $scope.numberOfPages = response.data.numberOfPages;
-                setCurrentPageURL();
-                lastBookListPosition = $window.pageYOffset;
-                $scope.showDetail = true;
-
-            });
+            .then(
+                function (response) {
+                    $scope.numberOfPages = response.data.numberOfPages;
+                    setCurrentPageURL();
+                    lastBookListPosition = $window.pageYOffset;
+                    $scope.showDetail = true;
+                })
+                .catch(
+                function(error) {
+                    console.log('Something went wrong :-( ' + JSON.stringify(error));
+                });
     };
 
     $scope.nextPage = function () {

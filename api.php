@@ -4,6 +4,10 @@
  * @author Philipp Höhne
  */
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET');
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
+
 require_once './vendor/autoload.php';
 require_once 'helpers.php';
 
@@ -38,6 +42,36 @@ function getBookList() {
 
     return json($books);
 }
+
+dispatch('/booklist', 'getBookList2');
+
+function getBookList2() {
+    return json_encode(dirToArray('./books'));
+}
+
+function dirToArray($dir) {
+  
+     $result = array();
+  
+     foreach (scandir($dir) as $key => $value)
+     {
+        if (!in_array($value,array(".","..")))
+        {
+           if (is_dir($dir . DIRECTORY_SEPARATOR . $value))
+           {
+              $result[$value] = dirToArray($dir . DIRECTORY_SEPARATOR . $value);
+           }
+           else
+           {
+              if(in_array(strtolower(pathinfo($value, PATHINFO_EXTENSION)),$GLOBALS['allowedBookTypes'])) {
+                 $result[] = $value;   
+              }
+           }
+        }
+     }
+    
+     return $result;
+  } 
 
 dispatch('/pages/:title', 'getNumberOfPages');
 

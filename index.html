@@ -53,9 +53,8 @@
                 <div layout="row" layout-wrap="" layout-align="center start" style="margin-top: 10px;" ng-hide="listView">
                     <div ng-repeat="book in books | filter: search" ng-click="getBook(book)" layout="col"
                         layout-wrap="">
-                        <div flex="100" flex-sm="50" flex-md="25" flex-gt-md="12" style="display: table; margin: 5px;"
-                            adaptive-background ab-image-class="coverThumbnail">
-                            <img ng-src="{{thumbPath}}\{{book}}.jpg" on-image-load-error="images/placeholderCover.png"
+                        <div flex="100" flex-sm="50" flex-md="25" flex-gt-md="12" style="display: table; margin: 5px;">
+                            <img ng-src="{{::thumbPath}}\{{::book}}.jpg" on-image-load-error="images/placeholderCover.png"
                                 class="coverThumbnail">
                         </div>
                     </div>
@@ -64,7 +63,7 @@
                 <md-list ng-show="listView">
                     <md-list-item ng-repeat="book in books | filter: search" ng-click="getBook(book)">
                         <md-list-item-text>
-                            {{book}}
+                            {{::book}}
                         </md-list-item-text>
                         <md-divider></md-divider>
                     </md-list-item>
