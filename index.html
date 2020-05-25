@@ -63,7 +63,7 @@
                 <md-list ng-show="listView">
                     <md-list-item ng-repeat="book in books | filter: search" ng-click="getBook(book)">
                         <md-list-item-text>
-                            {{::book}}
+                            {{::getPlainFilename(book)}}
                         </md-list-item-text>
                         <md-divider></md-divider>
                     </md-list-item>

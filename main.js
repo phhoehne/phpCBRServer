@@ -73,6 +73,10 @@ module.controller("pageController", function ($scope, $http, $localStorage, $win
                 });
     };
 
+    $scope.getPlainFilename = function(filename) {
+        return filename.split('.').slice(0, -1).join('.');
+    }
+
     $scope.nextPage = function () {
         if ($scope.currentPage < $scope.numberOfPages) {
             $scope.goToPage(++$scope.currentPage);
